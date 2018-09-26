@@ -2,7 +2,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const pg = require('pg');
-const url = require('url');
+//const url = require('url'); //required for heroku config later
 //require routers here
 
 
@@ -39,6 +39,8 @@ pool.on('error', (err) => {
   console.log('Unexpected error on idle client', err);
   process.exit(-1);
 })
+
+/* ----------- MODULE OUT TO SEPARATE ROUTERS LATER ------------- */
 
 //routes
 app.post('/entries', (req, res) => {

@@ -7,21 +7,21 @@
   <link rel="stylesheet" href="styles/style.css">
   <title>Time Tracker</title>
 </head>
-<body>
+<body ng-app="TimeTrackerApp" ng-controller="EntriesController as vm">
   <header>
     <h1>Time Tracker</h1>
   </header>
   
   <form>
-    <input type="text" placeholder="What did you do?" required>
-    <input type="text" placeholder="Which project?">
-    <input type="date" placeholder="When?">
-    <input type="text" placeholder="Start Time">
-    <input type="text" placeholder="End Time">
-    <input type="submit" value="Submit">
+    <input required type="text" placeholder="What did you do?" ng-model="vm.entryToAdd.name">
+    <input required type="text" placeholder="Which project?" ng-model="vm.entryToAdd.project_id">
+    <input required type="date" placeholder="When?" ng-model="vm.entryToAdd.date">
+    <input required type="text" placeholder="Start Time" ng-model="vm.entryToAdd.start_time">
+    <input required type="text" placeholder="End Time" ng-model="vm.entryToAdd.end_time">
+    <input type="submit" value="Submit" ng-click="vm.addEntry()">
   </form>
   
-
+<pre>{{vm || json}}</pre>
 
 
 
