@@ -10,7 +10,7 @@ app.controller('EntriesController', ['$http', function ($http) {
     console.log('In addEntry');
     $http.post('/entries', {
       name: vm.entryToAdd.name,
-      project_id: vm.entryToAdd.project_id, //HOW TO SELECT ID FROM ng-options???
+      project_id: vm.entryToAdd.project_id, //HOW TO SELECT ID? FROM ng-options???
       date: vm.entryToAdd.date,
       start_time: vm.entryToAdd.start_time,
       end_time: vm.entryToAdd.start_time

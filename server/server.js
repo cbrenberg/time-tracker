@@ -43,6 +43,8 @@ pool.on('error', (err) => {
 /* ----------- MODULE OUT TO SEPARATE ROUTERS LATER ------------- */
 
 //routes
+
+//POST
 app.post('/entries', (req, res) => {
   console.log('req.body:', req.body);
   pool.query( `INSERT INTO "entries" ("name", "project_id", "date", "start_time", "end_time")
@@ -52,6 +54,21 @@ app.post('/entries', (req, res) => {
     })
     .catch((error) => {
       console.log('Error adding entry to database.', error);
-      
+      res.sendStatus(500);
     })//end pool query
 })//end POST
+
+//GET
+app.get('/entries', (req, res) => {
+  console.log('/entries GET');
+  pool.query(`SELECT "entries"."id", "entries"."name", "entries"."date", ("entries"."end_time" - "entries"."start_time") as "duration" , "projects"."name" as "project"  
+              FROM "entries"
+              JOIN "projects" on "projects"."id" = "entries"."project_id";`)
+  .then((results) => {
+    res.send(results.rows);
+  })
+  .catch((error) => {
+    console.log('Error retrieving entries');
+    res.sendStatus(500);
+  })
+})//end GET
