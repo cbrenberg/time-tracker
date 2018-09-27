@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,17 +8,24 @@
   <link rel="stylesheet" href="styles/style.css">
   <title>Time Tracker</title>
 </head>
+
 <body ng-app="TimeTrackerApp" ng-controller="EntriesController as vm">
+  <!-- add header html below -->
   <header>
     <h1>Time Tracker</h1>
   </header>
-  
+
+  <!-- ng-include navigation bar here -->
+
+  <!-- ng-view goes here -->
+  <ng-view></ng-view>
+
   <form>
     <input required type="text" placeholder="What did you do?" ng-model="vm.entryToAdd.name">
     <input required type="text" placeholder="Which project?" ng-model="vm.entryToAdd.project_id">
     <input required type="date" placeholder="When?" ng-model="vm.entryToAdd.date">
-    <input required type="text" placeholder="Start Time (HH:MM)" ng-model="vm.entryToAdd.start_time">
-    <input required type="text" placeholder="End Time (HH:MM)" ng-model="vm.entryToAdd.end_time">
+    <input required type="time" placeholder="Start Time (HH:MM)" ng-model="vm.entryToAdd.start_time">
+    <input required type="time" placeholder="End Time (HH:MM)" ng-model="vm.entryToAdd.end_time">
     <input type="submit" value="Submit" ng-click="vm.addEntry()">
   </form>
 
@@ -43,14 +51,18 @@
       </tr>
     </tbody>
   </table>
-  
-<pre>{{vm | json}}</pre>
+
+  <pre>{{vm | json}}</pre>
 
 
 
-<!-- source script files below -->
+  <!-- source script files below -->
   <script src="vendors/angular.min.js"></script>
+  <script src="vendors/angular-route.min.js"></script>
   <script src="vendors/moment.js"></script>
   <script src="scripts/client.js"></script>
+  <script src="scripts/controllers/entries.js"></script>
+  <script src="scripts/controllers/projects.js"></script>
 </body>
+
 </html>
