@@ -32,6 +32,19 @@ router.get('/', (req, res) => {
     })
 })//end GET
 
+//GET PROJECT IDs AND NAMES
+router.get('/projects', (req, res) => {
+  console.log('/entries/projects GET');
+  pool.query(`SELECT * FROM "projects";`)
+    .then((results) => {
+      res.send(results.rows);
+    })
+    .catch((error) => {
+      console.log('Error retrieving projects');
+      res.sendStatus(500);
+    })
+})//end GET
+
 //DELETE TIME ENTRY
 router.delete('/', (req, res) => {
   console.log('/entries DELETE');

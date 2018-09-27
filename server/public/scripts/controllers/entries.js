@@ -3,6 +3,7 @@ app.controller('EntriesController', ['$http', function ($http) {
   let vm = this;
   vm.entryToAdd = {};
   vm.entries = [];
+  vm.projects = [];
 
   vm.addEntry = function () {
     console.log('In addEntry');
@@ -61,7 +62,21 @@ app.controller('EntriesController', ['$http', function ($http) {
       })//end $http
   }//end deleteEntry
 
+  //get project names to populate select options
+  vm.getProjects = function () {
+    console.log('in getProjects');
+    $http.get('/entries/projects')
+      .then(function (response) {
+        console.log(response.data);
+        vm.projects = response.data;
+      })
+      .catch(function (error) {
+        console.log('Error getting project list', error);
+      })//end GET
+  }//end getProjects
+
   //call getEntries on page load
   vm.getEntries();
+  vm.getProjects();
 
 }])//end EntriesController

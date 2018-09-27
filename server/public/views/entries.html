@@ -1,6 +1,6 @@
 <form>
   <input required type="text" placeholder="What did you do?" ng-model="vm.entryToAdd.name">
-  <input required type="text" placeholder="Which project?" ng-model="vm.entryToAdd.project_id">
+  <select required ng-options="project.id as project.name for project in vm.projects" ng-model="vm.entryToAdd.project_id"><option value="">---Please select---</option></select>
   <input required type="date" placeholder="When?" ng-model="vm.entryToAdd.date">
   <input required type="time" placeholder="Start Time (HH:MM)" ng-model="vm.entryToAdd.start_time">
   <input required type="time" placeholder="End Time (HH:MM)" ng-model="vm.entryToAdd.end_time">
