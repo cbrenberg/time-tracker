@@ -24,7 +24,17 @@ app.controller('ProjectsController', ['$http', function ($http) {
     console.log('in getProjects');
     $http.get('/projects')
     .then(function(response) {
-      vm.projects = response.data;
+
+      console.log(response.data);
+      vm.projects = response.data.map(function (project) {
+        //reformat duration as hours rounded to two decimal places and date as MM/DD/YYYY
+        project.duration = moment.duration(project.duration).asHours();
+        if (project.duration.toString().length > 3) {
+          project.duration = project.duration.toFixed(2);
+        }
+        //append reformatted object to vm.entries
+        return project;
+      })//end map
     })
     .catch(function(error) {
       console.log('Error getting project list', error);

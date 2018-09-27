@@ -12,7 +12,7 @@
   <tbody>
     <tr ng-repeat="project in vm.projects">
       <td>{{project.name}}</td>
-      <td>calculate total time here</td>
+      <td>{{project.duration}} hrs</td>
       <td>
         <button ng-click="vm.deleteProject(project)">
           Delete

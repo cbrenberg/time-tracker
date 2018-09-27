@@ -20,8 +20,12 @@ router.post('/', (req, res) => {
 
 //GET projects
 router.get('/', (req, res) => {
-  pool.query(`SELECT * FROM "projects";`)
+  pool.query(`SELECT "projects"."name",  SUM(("entries"."end_time" - "entries"."start_time")) as "duration"
+              FROM "projects"
+              JOIN "entries" ON "projects"."id" = "entries"."project_id"
+              GROUP BY "projects"."name";`)
   .then((results) => {
+    console.log(results.rows);
     res.send(results.rows);
   })
   .catch((err) => {
