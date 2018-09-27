@@ -13,8 +13,8 @@ app.controller('EntriesController', ['$http', function ($http) {
       name: vm.entryToAdd.name,
       project_id: vm.entryToAdd.project_id, //HOW TO SELECT ID? FROM ng-options???
       date: vm.entryToAdd.date,
-      start_time: vm.entryToAdd.start_time,
-      end_time: vm.entryToAdd.start_time
+      start_time: vm.entryToAdd.start_time, //HOW TO ENSURE PROPER FORMATTING FROM USER INPUT?
+      end_time: vm.entryToAdd.start_time //SEE ABOVE!
     })
       .then(function (response) {
         console.log('Entry added', response);
@@ -28,26 +28,25 @@ app.controller('EntriesController', ['$http', function ($http) {
     $http.get('/entries')
       .then(function (response) {
         console.log('Back from server with:', response);
-        // vm.entries = response.data;
-        //reformat duration as hours
-        // console.log(moment.duration(vm.entries[0].duration).asHours());
+        //reformat duration as hours rounded to two decimal places and date as MM/DD/YYYY
         vm.entries = response.data.map(function(entry) {
           entry.date = moment(entry.date).format("MM/DD/YYYY");
           entry.duration = moment.duration(entry.duration).asHours();
           if (entry.duration.toString().length > 3) {
             entry.duration = entry.duration.toFixed(2);
-          } else {
-            entry.duration = entry.duration
           }
+          //append reformatted object to vm.entries
           return entry;
         })//end map
-        console.log(vm.entries);
-        
       })
       .catch(function (error) {
         console.log('Error getting entries:', error);
       })//end $http
   }//end getEntries
+
+  // vm.deleteEntry = function(entryToDelete) {
+  //   $http.delete('/entries', )
+  // }
 
   //call getEntries on page load
   vm.getEntries();

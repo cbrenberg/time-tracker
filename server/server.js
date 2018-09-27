@@ -44,7 +44,7 @@ pool.on('error', (err) => {
 
 //routes
 
-//POST
+//POST NEW TIME ENTRY
 app.post('/entries', (req, res) => {
   console.log('req.body:', req.body);
   pool.query( `INSERT INTO "entries" ("name", "project_id", "date", "start_time", "end_time")
@@ -58,7 +58,7 @@ app.post('/entries', (req, res) => {
     })//end pool query
 })//end POST
 
-//GET
+//GET TIME ENTRIES
 app.get('/entries', (req, res) => {
   console.log('/entries GET');
   pool.query(`SELECT "entries"."id", "entries"."name", "entries"."date", ("entries"."end_time" - "entries"."start_time") as "duration" , "projects"."name" as "project"  
@@ -72,3 +72,18 @@ app.get('/entries', (req, res) => {
     res.sendStatus(500);
   })
 })//end GET
+
+//DELETE TIME ENTRY
+app.delete('/entries', (req, res) => {
+  console.log('/entries DELETE');
+  pool.query(`DELETE FROM "entries" WHERE "id"=$1;`, [req.query.id])
+  .then(() => {
+    console.log('Deleted listing');
+    res.sendStatus(200);
+  })
+  .catch((error) => {
+    console.log("error deleting entry", error);
+    res.sendStatus(500);
+  })
+  
+})//end DELETE

@@ -16,8 +16,8 @@
     <input required type="text" placeholder="What did you do?" ng-model="vm.entryToAdd.name">
     <input required type="text" placeholder="Which project?" ng-model="vm.entryToAdd.project_id">
     <input required type="date" placeholder="When?" ng-model="vm.entryToAdd.date">
-    <input required type="text" placeholder="Start Time" ng-model="vm.entryToAdd.start_time">
-    <input required type="text" placeholder="End Time" ng-model="vm.entryToAdd.end_time">
+    <input required type="text" placeholder="Start Time (HH:MM)" ng-model="vm.entryToAdd.start_time">
+    <input required type="text" placeholder="End Time (HH:MM)" ng-model="vm.entryToAdd.end_time">
     <input type="submit" value="Submit" ng-click="vm.addEntry()">
   </form>
 
@@ -48,7 +48,7 @@
 
 
 
-
+<!-- source script files below -->
   <script src="vendors/angular.min.js"></script>
   <script src="vendors/moment.js"></script>
   <script src="scripts/client.js"></script>
