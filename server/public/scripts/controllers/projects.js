@@ -12,7 +12,10 @@ app.controller('ProjectsController', ['$http', function ($http) {
     })
       .then(function () {
         console.log('Project added');
-        // vm.getProjects();
+        //clear inputs
+        vm.projectToAdd = {};
+        //refresh table
+        vm.getProjects();
       })
       .catch(function (err) {
         console.log('Error adding project:', err);
@@ -42,7 +45,21 @@ app.controller('ProjectsController', ['$http', function ($http) {
   }//end getProjects
 
   //delete projects
-
+  vm.deleteProject = function(projectToDelete) {
+    console.log('in deleteProject');
+    $http.delete('/projects',
+    {
+      params: { id: projectToDelete.id }
+    })
+      .then(function () {
+        console.log('Back from /projects DELETE: SUCCESS!');
+        //refresh table display
+        vm.getProjects();
+      })
+      .catch(function (error) {
+        console.log('Error deleting item:', error);
+      })//end $http
+  }
 
   //get project list on page load
   vm.getProjects();

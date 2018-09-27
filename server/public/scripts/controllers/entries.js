@@ -15,6 +15,8 @@ app.controller('EntriesController', ['$http', function ($http) {
     })
       .then(function (response) {
         console.log('Entry added', response);
+        //clear inputs
+        vm.entryToAdd = {};
         //refresh table after adding new entry
         vm.getEntries();
       })
