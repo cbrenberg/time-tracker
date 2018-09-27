@@ -20,13 +20,37 @@
     <input required type="text" placeholder="End Time" ng-model="vm.entryToAdd.end_time">
     <input type="submit" value="Submit" ng-click="vm.addEntry()">
   </form>
+
+  <table>
+    <thead>
+      <th>Entry</th>
+      <th>Project</th>
+      <th>Date</th>
+      <th>Time Spent</th>
+      <th>Actions</th>
+    </thead>
+    <tbody>
+      <tr ng-repeat="entry in vm.entries">
+        <td>{{entry.name}}</td>
+        <td>{{entry.project}}</td>
+        <td>{{entry.date}}</td>
+        <td>{{entry.duration}} hrs</td>
+        <td>
+          <button>
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
   
-<pre>{{vm || json}}</pre>
+<pre>{{vm | json}}</pre>
 
 
 
 
   <script src="vendors/angular.min.js"></script>
+  <script src="vendors/moment.js"></script>
   <script src="scripts/client.js"></script>
 </body>
 </html>
