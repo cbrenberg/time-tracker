@@ -3,7 +3,7 @@ const pool = require('../modules/pool');
 const router = express.Router();
 
 
-//POST NEW TIME ENTRY
+//POST new project
 router.post('/', (req, res) => {
   console.log('req.body:', req.body);
   pool.query(`INSERT INTO "projects" ("name")
@@ -16,5 +16,18 @@ router.post('/', (req, res) => {
       res.sendStatus(500);
     })//end pool query
 })//end POST
+
+
+//GET projects
+router.get('/', (req, res) => {
+  pool.query(`SELECT * FROM "projects";`)
+  .then((results) => {
+    res.send(results.rows);
+  })
+  .catch((err) => {
+    console.log('Error retrieving projects:', err);
+    res.sendStatus(500);
+  });//end query
+})//end GET
 
 module.exports = router;
