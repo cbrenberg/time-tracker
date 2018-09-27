@@ -44,9 +44,21 @@ app.controller('EntriesController', ['$http', function ($http) {
       })//end $http
   }//end getEntries
 
-  // vm.deleteEntry = function(entryToDelete) {
-  //   $http.delete('/entries', )
-  // }
+  vm.deleteEntry = function(entryToDelete) {
+    console.log(entryToDelete)
+    $http.delete('/entries', 
+      {
+        params: {id: entryToDelete.id}
+      })
+      .then(function() {
+        console.log('Back from /entries DELETE: SUCCESS!');
+        //refresh table display
+        vm.getEntries();
+      })
+      .catch(function(error) {
+        console.log('Error deleting item:', error);
+      })//end $http
+  }//end deleteEntry
 
   //call getEntries on page load
   vm.getEntries();
