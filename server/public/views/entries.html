@@ -1,33 +1,45 @@
-<form>
-  <input required type="text" placeholder="What did you do?" ng-model="vm.entryToAdd.name">
-  <select required ng-options="project.id as project.name for project in vm.projects" ng-model="vm.entryToAdd.project_id"><option value="">---Please select---</option></select>
-  <input required type="date" placeholder="When?" ng-model="vm.entryToAdd.date">
-  <input required type="time" placeholder="Start Time (HH:MM)" ng-model="vm.entryToAdd.start_time">
-  <input required type="time" placeholder="End Time (HH:MM)" ng-model="vm.entryToAdd.end_time">
-  <input type="submit" value="Submit" ng-click="vm.addEntry()">
-</form>
+<div class="timeEntryContainer" layout="column">
+  <div class="timeEntryFormDiv">
+    <form>
+      <input required type="text" placeholder="What did you do?" ng-model="vm.entryToAdd.name">
+      <select required ng-options="project.id as project.name for project in vm.projects" ng-model="vm.entryToAdd.project_id">
+        <option value="">---Please select---</option>
+      </select>
+      <input required type="date" placeholder="When?" ng-model="vm.entryToAdd.date">
+      <input required type="time" ng-model="vm.entryToAdd.start_time">
+      <input required type="time" ng-model="vm.entryToAdd.end_time">
+      <input type="submit" value="Submit" ng-click="vm.addEntry()">
+    </form>
+  </div>
+  <br>
+  <div layout="column" class="timeEntryTableDiv">
+    <table flex="100">
+      <thead>
+        <tr layout="row">
+          <th flex>Entry</th>
+          <th flex>Project</th>
+          <th flex>Date</th>
+          <th flex>Time Spent</th>
+          <th flex>Actions</th>
+        </tr>
+      </thead>
+      <md-divider></md-divider>
+      <tbody>
+          <tr ng-repeat="entry in vm.entries" layout="row">
+            <td flex>{{entry.name}}</td>
+            <td flex>{{entry.project}}</td>
+            <td flex>{{entry.date}}</td>
+            <td flex>{{entry.duration}} hrs</td>
+            <td flex layout="row">
+              <md-button class="md-secondary" flex="100" ng-click="vm.deleteEntry(entry)">
+                Delete
+                </button>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
 
-<table>
-  <thead>
-    <th>Entry</th>
-    <th>Project</th>
-    <th>Date</th>
-    <th>Time Spent</th>
-    <th>Actions</th>
-  </thead>
-  <tbody>
-    <tr ng-repeat="entry in vm.entries">
-      <td>{{entry.name}}</td>
-      <td>{{entry.project}}</td>
-      <td>{{entry.date}}</td>
-      <td>{{entry.duration}} hrs</td>
-      <td>
-        <button ng-click="vm.deleteEntry(entry)">
-          Delete
-        </button>
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-<pre>{{vm | json}}</pre>
+<!-- uncomment to see view model data -->
+<!-- <pre>{{vm | json}}</pre> -->

@@ -1,0 +1,14 @@
+tr:nth-child(even) {
+  background: #CCC;
+}
+
+tr:nth-child(odd) {
+  background: #BBB;
+}
+
+th {
+  background: #444;
+  height: 4rem;
+  text-align: left;
+  line-height: 4rem;
+}

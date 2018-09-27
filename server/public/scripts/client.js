@@ -1,6 +1,13 @@
 console.log('client.js loaded');
 
-const app = angular.module('TimeTrackerApp', ['ngRoute']);
+const app = angular.module('TimeTrackerApp', ['ngRoute', 'ngMaterial'])
+  .config(function ($mdThemingProvider) {
+    $mdThemingProvider.theme('default')
+      .primaryPalette('brown')
+      .accentPalette('deep-orange')
+      .warnPalette('amber')
+      .backgroundPalette('blue-grey');
+  });;
 
 app.config(['$routeProvider', function ($routeProvider) {
   $routeProvider
