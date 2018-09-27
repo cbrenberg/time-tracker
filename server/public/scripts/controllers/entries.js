@@ -10,11 +10,13 @@ app.controller('EntriesController', ['$http', function ($http) {
       name: vm.entryToAdd.name,
       project_id: vm.entryToAdd.project_id, //HOW TO SELECT ID? FROM ng-options???
       date: vm.entryToAdd.date,
-      start_time: moment(vm.entryToAdd.start_time, 'hh:mm A').format('HH:mm'), //HOW TO ENSURE PROPER FORMATTING FROM USER INPUT?
-      end_time: moment(vm.entryToAdd.end_time).format('HH:mm') //SEE ABOVE!
+      start_time: moment(vm.entryToAdd.start_time, 'hh:mm A').format('HH:mm'), //reformats standard time as 24hr HH:mm
+      end_time: moment(vm.entryToAdd.end_time, 'hh:mm A').format('HH:mm') //same as above
     })
       .then(function (response) {
         console.log('Entry added', response);
+        //refresh table after adding new entry
+        vm.getEntries();
       })
       .catch(function (error) {
         console.log('Error adding entry', error);
