@@ -4,7 +4,7 @@ const app = angular.module('TimeTrackerApp', ['ngRoute']);
 
 app.config(['$routeProvider', function ($routeProvider) {
   $routeProvider
-    .when('/entries',
+    .when('/',
       {
         templateUrl: '../views/entries.html',
         controller: 'EntriesController as vm'

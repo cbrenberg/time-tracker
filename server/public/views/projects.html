@@ -1,0 +1,25 @@
+<form>
+  <input required type="text" placeholder="Project Name" ng-model="vm.projectToAdd.name">
+  <input type="submit" value="Submit" ng-click="vm.addProject()">
+</form>
+
+<table>
+  <thead>
+    <th>Project</th>
+    <th>Time Spent</th>
+    <th>Actions</th>
+  </thead>
+  <tbody>
+    <tr ng-repeat="project in vm.projects">
+      <td>{{project.name}}</td>
+      <td>calculate total time here</td>
+      <td>
+        <button ng-click="vm.deleteProject(project)">
+          Delete
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<pre>{{vm | json}}</pre>

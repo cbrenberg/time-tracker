@@ -1,0 +1,33 @@
+<form>
+  <input required type="text" placeholder="What did you do?" ng-model="vm.entryToAdd.name">
+  <input required type="text" placeholder="Which project?" ng-model="vm.entryToAdd.project_id">
+  <input required type="date" placeholder="When?" ng-model="vm.entryToAdd.date">
+  <input required type="time" placeholder="Start Time (HH:MM)" ng-model="vm.entryToAdd.start_time">
+  <input required type="time" placeholder="End Time (HH:MM)" ng-model="vm.entryToAdd.end_time">
+  <input type="submit" value="Submit" ng-click="vm.addEntry()">
+</form>
+
+<table>
+  <thead>
+    <th>Entry</th>
+    <th>Project</th>
+    <th>Date</th>
+    <th>Time Spent</th>
+    <th>Actions</th>
+  </thead>
+  <tbody>
+    <tr ng-repeat="entry in vm.entries">
+      <td>{{entry.name}}</td>
+      <td>{{entry.project}}</td>
+      <td>{{entry.date}}</td>
+      <td>{{entry.duration}} hrs</td>
+      <td>
+        <button ng-click="vm.deleteEntry(entry)">
+          Delete
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<pre>{{vm | json}}</pre>

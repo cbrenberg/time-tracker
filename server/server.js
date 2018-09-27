@@ -4,7 +4,8 @@ const bodyParser = require('body-parser');
 const pg = require('pg');
 //const url = require('url'); //required for heroku config later
 //require routers here
-const entries = require('./routes/router.entries')
+const entries = require('./routes/router.entries');
+const projects = require('./routes/router.projects');
 
 
 //globals
@@ -17,6 +18,7 @@ app.use(express.static('server/public'));
 
 //routes
 app.use('/entries', entries);
+app.use('/projects', projects);
 
 //spin up server
 app.listen(PORT, () => {
