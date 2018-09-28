@@ -5,6 +5,7 @@
       <select required ng-options="project.id as project.name for project in vm.projects" ng-model="vm.entryToAdd.project_id">
         <option value="">---Please select---</option>
       </select>
+      <md-datepicker ng-model="vm.entryToAdd.date" md-placeholder="Enter date"></md-datepicker>
       <input required type="date" placeholder="When?" ng-model="vm.entryToAdd.date">
       <input required type="time" ng-model="vm.entryToAdd.start_time">
       <input required type="time" ng-model="vm.entryToAdd.end_time">
@@ -12,34 +13,46 @@
     </form>
   </div>
   <br>
-  <div layout="column" class="timeEntryTableDiv">
-    <table flex="100">
-      <thead>
-        <tr layout="row">
-          <th flex>Entry</th>
-          <th flex>Project</th>
-          <th flex>Date</th>
-          <th flex>Time Spent</th>
-          <th flex>Actions</th>
-        </tr>
-      </thead>
-      <md-divider></md-divider>
-      <tbody>
-          <tr ng-repeat="entry in vm.entries" layout="row">
-            <td flex>{{entry.name}}</td>
-            <td flex>{{entry.project}}</td>
-            <td flex>{{entry.date}}</td>
-            <td flex>{{entry.duration}} hrs</td>
-            <td flex layout="row">
-              <md-button class="md-secondary" flex="100" ng-click="vm.deleteEntry(entry)">
-                Delete
-                </button>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-  </div>
+  <!-- CARDS ALTERNATIVE DISPLAY -->
+  
+  <md-content layout="column" layout-padding layout-align="stretch" flex="80">
+    <md-toolbar class="tableHeader md-hue-4" layout="row">
+      <div flex="90" layout="row" layout-align="space-between center">
+        <span flex="40">
+          <h4 class="rowTitle md-title">Task</h4>
+        </span>
+        <span flex="20">
+          <h5 class="rowSubtitle md-title">Project</h5>
+        </span>
+        <span flex="20" class="md-title">Date</span>
+        <span flex="20" class="md-title">Time Spent</span>
+      </div>
+      <div flex="10" layout="row" layout-align="center center">
+        <span class="md-title">Action</span>
+      </div>
+    </md-toolbar>
+    <div class="tableRow" layout="row" ng-repeat="entry in vm.entries">
+      <div flex="90" layout="row" layout-align="space-between center">
+        <span flex="40">
+          <h4 class="rowTitle md-headline">{{entry.name}}</h4>
+        </span>
+        <span flex="20">
+          <h5 class="rowSubtitle md-subhead">{{entry.project}}</h5>
+        </span>
+        <span flex="20" class="md-body-1">{{entry.date}}</span>
+        <span flex="20" class="md-body-1">{{entry.duration}} hrs</span>
+      </div>
+      <div flex="10" layout="row" layout-align="center center">
+        <md-button class="md-secondary md-icon-button" ng-click="vm.deleteEntry(entry)">
+          <md-icon>delete_outline</md-icon>
+        </md-button>
+      </div>
+    </div>
+  </md-content>
 </div>
+
+
+
 
 <!-- uncomment to see view model data -->
 <!-- <pre>{{vm | json}}</pre> -->

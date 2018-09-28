@@ -1,14 +1,25 @@
-tr:nth-child(even) {
-  background: #CCC;
+.tableHeader, .tableRow {
+  padding-left: 2rem;
+  padding-right: 2rem;
 }
 
-tr:nth-child(odd) {
-  background: #BBB;
+.tableRow:nth-child(even) {
+  background: rgba(200, 200, 200, 0.8);
 }
 
-th {
-  background: #444;
-  height: 4rem;
-  text-align: left;
-  line-height: 4rem;
+.rowTitle {
+  margin: 0px 0px;
+}
+
+.rowSubtitle {
+  margin: 0px 0px;
+}
+
+header.md-tall {
+  padding-left: 2rem;
+}
+
+ng-view {
+  width: 80%;
+  margin:auto;
 }
