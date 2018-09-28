@@ -6,7 +6,7 @@ const app = angular.module('TimeTrackerApp', ['ngRoute', 'ngMaterial'])
       .primaryPalette('brown')
       .accentPalette('deep-orange')
       .warnPalette('amber')
-      .backgroundPalette('blue-grey');
+      .backgroundPalette('grey');
   });;
 
 app.config(['$routeProvider', function ($routeProvider) {
