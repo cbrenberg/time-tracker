@@ -1,7 +1,7 @@
 <md-content layout="column" layout-align="stretch center" class="timeEntryFormDiv">
   <md-toolbar class="md-hue-4">
     <div class="md-toolbar-tools">
-      <h2 flex>Add an entry</h2>
+      <h2 flex>Add a task</h2>
     </div>
   </md-toolbar>
   <form class="entryForm" layout="row">
@@ -32,8 +32,8 @@
       <input required type="time" ng-model="vm.entryToAdd.end_time">
     </md-input-container>
 
-    <md-input-container flex class="md-no-underline">
-      <input type="submit" value="Submit" ng-click="vm.addEntry()">
+    <md-input-container flex class="">
+      <md-button type="submit" ng-click="vm.addEntry()">Submit</md-button>
     </md-input-container>
     <!-- ng-options="project.id as project.name for project in vm.projects" -->
     <!-- <input required type="date" placeholder="When?" ng-model="vm.entryToAdd.date"> -->
@@ -57,7 +57,7 @@
         <span flex="20" class="md-title">Time Spent</span>
       </div>
       <div flex="10" layout="row" layout-align="center center">
-        <span class="md-title">Action</span>
+        <span class="md-title">Actions</span>
       </div>
     </div>
   </md-toolbar>
@@ -76,9 +76,13 @@
       <span flex="20" class="md-body-1">{{entry.duration}} hrs</span>
     </div>
     <div flex="10" layout="row" layout-align="center center">
+      <md-button class="md-secondary md-icon-button" ng-click="">
+        <md-icon>edit_outline</md-icon>
+      </md-button>
       <md-button class="md-secondary md-icon-button" ng-click="vm.deleteEntry(entry)">
         <md-icon>delete_outline</md-icon>
       </md-button>
+
     </div>
   </div>
 </md-content>

@@ -1,5 +1,5 @@
 // MODULE OUT INTO ENTRIES CONTROLLER
-app.controller('EntriesController', ['$http', function ($http) {
+app.controller('EntriesController', ['$http', '$mdDialog', '$mdToast', function ($http, $mdDialog, $mdToast, ) {
   let vm = this;
   vm.entryToAdd = {};
   vm.entries = [];
@@ -56,6 +56,8 @@ app.controller('EntriesController', ['$http', function ($http) {
         console.log('Back from /entries DELETE: SUCCESS!');
         //refresh table display
         vm.getEntries();
+        //toast dialog
+        $mdToast.show($mdToast.simple().textContent('Task successfully deleted'));
       })
       .catch(function (error) {
         console.log('Error deleting item:', error);

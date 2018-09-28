@@ -32,7 +32,7 @@
       </span>
     </div>
     <div flex="10" layout="row" layout-align="center center">
-      <span class="md-title">Action</span>
+      <span class="md-title">Actions</span>
     </div>
   </md-toolbar>
 </md-content>
@@ -47,9 +47,13 @@
         <span flex="20" class="md-body-1">{{project.duration}}</span>
       </div>
       <div flex="10" layout="row" layout-align="center center">
+        <md-button class="md-secondary md-icon-button" ng-click="">
+          <md-icon>edit_outline</md-icon>
+        </md-button>
         <md-button class="md-secondary md-icon-button" ng-click="vm.deleteProject(project)">
           <md-icon>delete_outline</md-icon>
         </md-button>
+        
       </div>
     </md-list-item>
   </md-list>

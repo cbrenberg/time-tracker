@@ -1,4 +1,4 @@
-app.controller('ProjectsController', ['$http', function ($http) {
+app.controller('ProjectsController', ['$http', '$mdDialog', '$mdToast', function ($http, $mdDialog, $mdToast) {
   let vm = this;
   vm.projectToAdd = {};
   vm.projects = [];
@@ -55,6 +55,8 @@ app.controller('ProjectsController', ['$http', function ($http) {
         console.log('Back from /projects DELETE: SUCCESS!');
         //refresh table display
         vm.getProjects();
+        //toast dialog
+        $mdToast.show($mdToast.simple().textContent('Project successfully deleted'));
       })
       .catch(function (error) {
         console.log('Error deleting item:', error);

@@ -1,6 +1,6 @@
 console.log('client.js loaded');
 
-const app = angular.module('TimeTrackerApp', ['ngRoute', 'ngMaterial'])
+const app = angular.module('TimeTrackerApp', ['ngRoute', 'ngMaterial', 'ngMessages'])
   .config(function ($mdThemingProvider) {
     $mdThemingProvider.theme('default')
       .primaryPalette('brown')
