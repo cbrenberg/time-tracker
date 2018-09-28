@@ -26,10 +26,10 @@
     <div class="md-toolbar-tools">
       <div flex="90" layout="row" layout-align="space-between center">
         <span flex="80">
-          <h4 class="rowTitle md-title">Project Name</h4>
+          <h4 class="rowTitle md-title sortable" ng-click="vm.orderByField='-name'; vm.reverseSort = !vm.reverseSort">Project Name<md-icon>unfold_more</md-icon></h4>
         </span>
         <span flex="20">
-          <h5 class="rowSubtitle md-title">Time Spent</h5>
+          <h5 class="rowSubtitle md-title sortable" ng-click="vm.orderByField='-duration'; vm.reverseSort = !vm.reverseSort">Time Spent<md-icon>unfold_more</md-icon></h5>
         </span>
       </div>
       <div flex="10" layout="row" layout-align="center center">
@@ -40,7 +40,7 @@
 </md-content>
 
 <md-content class="scrollable">
-    <div class="tableRow" layout="row" ng-repeat="project in vm.projects">
+    <div class="tableRow" layout="row" ng-repeat="project in vm.projects| orderBy:vm.orderByField:vm.reverseSort">
       <div flex="90" layout="row" layout-align="space-between center">
         <span flex="80">
           <h4 class="rowTitle md-headline">{{project.name}}</h4>

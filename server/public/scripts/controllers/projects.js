@@ -2,6 +2,8 @@ app.controller('ProjectsController', ['$http', '$mdDialog', '$mdToast', function
   let vm = this;
   vm.projectToAdd = {};
   vm.projects = [];
+  vm.reverseSort = true;
+  vm.orderByField = '';
 
 
   //add a new project

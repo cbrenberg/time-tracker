@@ -4,6 +4,8 @@ app.controller('EntriesController', ['$http', '$mdDialog', '$mdToast', function 
   vm.entryToAdd = {};
   vm.entries = [];
   vm.projects = [];
+  vm.orderByField = '';
+  vm.reverseSort = false;
 
   vm.addEntry = function () {
     console.log('In addEntry');
@@ -89,6 +91,12 @@ app.controller('EntriesController', ['$http', '$mdDialog', '$mdToast', function 
         console.log('Error getting project list', error);
       })//end GET
   }//end getProjects
+
+  vm.sortBy = function(column) {
+    vm.orderByField = column; 
+    vm.reverseSort = !vm.reverseSort;
+  }
+  
 
   //call getEntries on page load
   vm.getEntries();

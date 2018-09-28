@@ -42,3 +42,7 @@ md-content.scrollable {
 @media only screen and (max-width: 600px) {
   body {overflow: scroll}
 }
+
+.sortable {
+  cursor: pointer;
+}
