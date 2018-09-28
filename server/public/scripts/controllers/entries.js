@@ -20,6 +20,8 @@ app.controller('EntriesController', ['$http', '$mdDialog', '$mdToast', function 
         vm.entryToAdd = {};
         //refresh table after adding new entry
         vm.getEntries();
+        //toast dialog
+        $mdToast.show($mdToast.simple().textContent('Task successfully added'));
       })
       .catch(function (error) {
         console.log('Error adding entry', error);
@@ -48,20 +50,31 @@ app.controller('EntriesController', ['$http', '$mdDialog', '$mdToast', function 
 
   vm.deleteEntry = function (entryToDelete) {
     console.log(entryToDelete)
-    $http.delete('/entries',
-      {
-        params: { id: entryToDelete.id }
-      })
+
+    let confirm = $mdDialog.confirm()
+      .title('Are you sure?')
+      .textContent('This action cannot be undone')
+      .ok('Yes, I\'m sure')
+      .cancel('Cancel');
+
+    $mdDialog.show(confirm)
       .then(function () {
-        console.log('Back from /entries DELETE: SUCCESS!');
-        //refresh table display
-        vm.getEntries();
-        //toast dialog
-        $mdToast.show($mdToast.simple().textContent('Task successfully deleted'));
-      })
-      .catch(function (error) {
-        console.log('Error deleting item:', error);
-      })//end $http
+
+        $http.delete('/entries',
+          {
+            params: { id: entryToDelete.id }
+          })
+          .then(function () {
+            console.log('Back from /entries DELETE: SUCCESS!');
+            //refresh table display
+            vm.getEntries();
+            //toast dialog
+            $mdToast.show($mdToast.simple().textContent('Task successfully deleted'));
+          })
+          .catch(function (error) {
+            console.log('Error deleting item:', error);
+          })//end $http
+      })//end $mdDialog
   }//end deleteEntry
 
   //get project names to populate select options

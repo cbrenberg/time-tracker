@@ -4,7 +4,7 @@
       <h2 flex>Add a task</h2>
     </div>
   </md-toolbar>
-  <form class="entryForm" layout="row">
+  <form class="entryForm" layout="row" layout-xs="column">
     <md-input-container flex>
       <label>Task Description</label>
       <input required type="text" ng-model="vm.entryToAdd.name">
@@ -18,7 +18,7 @@
       </md-select>
     </md-input-container>
 
-    <md-input-container flex>
+    <md-input-container flex style="min-width:200px;">
       <md-datepicker required ng-model="vm.entryToAdd.date" md-placeholder="Enter date"></md-datepicker>
     </md-input-container>
 
@@ -44,7 +44,7 @@
 <!-- CUSTOM TABLE DISPLAY -->
 
 <md-content layout="column" layout-align="stretch" flex="80">
-  <md-toolbar md-scroll-shrink ng-if="true" class="tableHeader md-hue-4" layout="row">
+  <md-toolbar class="tableHeader md-hue-4" layout="row">
     <div class="md-toolbar-tools">
       <div flex="90" layout="row" layout-align="space-between center">
         <span flex="40">

@@ -23,23 +23,24 @@
 
 <md-content layout="column" layout-align="stretch" flex="80">
   <md-toolbar class="tableHeader md-hue-4" layout="row">
-    <div flex="90" layout="row" layout-align="space-between center">
-      <span flex="80">
-        <h4 class="rowTitle md-title">Project Name</h4>
-      </span>
-      <span flex="20">
-        <h5 class="rowSubtitle md-title">Time Spent</h5>
-      </span>
-    </div>
-    <div flex="10" layout="row" layout-align="center center">
-      <span class="md-title">Actions</span>
+    <div class="md-toolbar-tools">
+      <div flex="90" layout="row" layout-align="space-between center">
+        <span flex="80">
+          <h4 class="rowTitle md-title">Project Name</h4>
+        </span>
+        <span flex="20">
+          <h5 class="rowSubtitle md-title">Time Spent</h5>
+        </span>
+      </div>
+      <div flex="10" layout="row" layout-align="center center">
+        <span class="md-title">Actions</span>
+      </div>
     </div>
   </md-toolbar>
 </md-content>
 
 <md-content class="scrollable">
-  <md-list>
-    <md-list-item class="tableRow" layout="row" ng-repeat="project in vm.projects">
+    <div class="tableRow" layout="row" ng-repeat="project in vm.projects">
       <div flex="90" layout="row" layout-align="space-between center">
         <span flex="80">
           <h4 class="rowTitle md-headline">{{project.name}}</h4>
@@ -53,8 +54,6 @@
         <md-button class="md-secondary md-icon-button" ng-click="vm.deleteProject(project)">
           <md-icon>delete_outline</md-icon>
         </md-button>
-        
       </div>
-    </md-list-item>
-  </md-list>
+    </div>
 </md-content>

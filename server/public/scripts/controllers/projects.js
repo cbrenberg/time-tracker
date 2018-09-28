@@ -16,6 +16,8 @@ app.controller('ProjectsController', ['$http', '$mdDialog', '$mdToast', function
         vm.projectToAdd = {};
         //refresh table
         vm.getProjects();
+        //toast dialog
+        $mdToast.show($mdToast.simple().textContent('Project successfully added'));
       })
       .catch(function (err) {
         console.log('Error adding project:', err);
@@ -47,21 +49,32 @@ app.controller('ProjectsController', ['$http', '$mdDialog', '$mdToast', function
   //delete projects
   vm.deleteProject = function(projectToDelete) {
     console.log('in deleteProject');
-    $http.delete('/projects',
-    {
-      params: { id: projectToDelete.id }
-    })
-      .then(function () {
-        console.log('Back from /projects DELETE: SUCCESS!');
-        //refresh table display
-        vm.getProjects();
-        //toast dialog
-        $mdToast.show($mdToast.simple().textContent('Project successfully deleted'));
-      })
-      .catch(function (error) {
-        console.log('Error deleting item:', error);
-      })//end $http
-  }
+
+    let confirm = $mdDialog.confirm()
+      .title('Are you sure?')
+      .textContent('This action cannot be undone')
+      .ok('Yes, I\'m sure')
+      .cancel('Cancel');
+
+    $mdDialog.show(confirm)
+      .then(function() {
+        $http.delete('/projects',
+          {
+            params: { id: projectToDelete.id }
+          })
+          .then(function () {
+            console.log('Back from /projects DELETE: SUCCESS!');
+            //refresh table display
+            vm.getProjects();
+            //toast dialog
+            $mdToast.show($mdToast.simple().textContent('Project successfully deleted'));
+          })
+          .catch(function (error) {
+            console.log('Error deleting item:', error);
+          })//end $http
+      })//end $mdDialog
+  }//end deleteProject
+
 
   //get project list on page load
   vm.getProjects();

@@ -8,11 +8,6 @@ body {
   padding-right: 2rem;
 }
 
-/* #navigation {
-  position: fixed;
-  top: 0;
-} */
-
 .tableRow {
   min-height: 50px;
 }
@@ -41,4 +36,9 @@ ng-view {
 md-content.scrollable {
   height: 45vh;
   overflow-y: scroll;
+}
+
+/* makes content scrollable on narrow screens */
+@media only screen and (max-width: 600px) {
+  body {overflow: scroll}
 }
