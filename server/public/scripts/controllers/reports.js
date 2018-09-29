@@ -11,6 +11,40 @@ app.controller('ReportsController', ['$http', '$mdDialog', '$mdToast', function 
       .then(function(response) {
         console.log('back from /reports/projects with', response.data);
         vm.summaryData = response.data;
+
+        //generate color palette based on length of returned object
+        var barColors = palette('mpn65', vm.summaryData.length);
+
+        //assign new color list to chart
+        vm.testChart.data.datasets[0].backgroundColor = barColors.map(function (color) {
+          hexToRgba(color, 0.2);
+          return color;
+        });//end backgroundColors map;
+        console.log('backgroundColor:', vm.testChart.data.datasets[0].backgroundColor);
+        
+
+
+        //assign border colors
+        vm.testChart.data.datasets[0].borderColor = barColors.map(function (color) {
+          hexToRgba(color);
+          return color;
+        });//end borderColors map
+
+        //assign colors for tooltip colorbox
+        vm.testChart.data.datasets[0].pointStrokeColor = vm.testChart.data.datasets[0].borderColor;
+
+        //assign hover colors
+        vm.testChart.data.datasets[0].hoverBackgroundColor = barColors.map(function (color) {
+          hexToRgba(color, 0.4);
+          return color;
+        });//end borderColors map
+
+        vm.summaryData.forEach((project) => {
+          vm.testChart.data.labels.push(project.name);
+          vm.testChart.data.datasets[0].data.push(
+            moment.duration(project.duration).asHours().toFixed(2)
+          );
+        })
       })
       .catch(function(error) {
         console.log('Error getting summary data:', error);
@@ -21,13 +55,12 @@ app.controller('ReportsController', ['$http', '$mdDialog', '$mdToast', function 
       .then(function (response) {
         console.log('back from /reports/tasks with', response.data);
         vm.taskData = response.data;
-        vm.taskData.forEach( (task) => {
-          testChart.data.labels.push(task.name);
-          testChart.data.datasets[0].data.push(
-            moment.duration(task.duration).asHours().toFixed(2)
-          );
-        })
-        console.log(testChart.data.labels, testChart.data.datasets[0].data)
+        // vm.taskData.forEach( (task) => {
+        //   testChart.data.labels.push(task.name);
+        //   testChart.data.datasets[0].data.push(
+        //     moment.duration(task.duration).asHours().toFixed(2)
+        //   );
+        // })
       })
       .catch(function (error) {
         console.log('Error getting summary data:', error);
@@ -36,30 +69,17 @@ app.controller('ReportsController', ['$http', '$mdDialog', '$mdToast', function 
 
 
 //initialize chart.JS display
-  let ctx = document.getElementById('testChart');
-  let testChart = new Chart(ctx, {
+  vm.ctx = document.getElementById('testChart');
+  vm.testChart = new Chart(vm.ctx, {
     type: 'bar',
     data: {
       labels: [], //populate with project names
       datasets: [{
         label: 'hours',
         data: [], //populate with durations
-        backgroundColor: [
-          'rgba(255, 99, 132, 0.2)',
-          'rgba(54, 162, 235, 0.2)',
-          'rgba(255, 206, 86, 0.2)',
-          'rgba(75, 192, 192, 0.2)',
-          'rgba(153, 102, 255, 0.2)',
-          'rgba(255, 159, 64, 0.2)'
-        ], //dynamically generate colors based on number of distinct projects (from projects GET data) with palette.js
-        borderColor: [
-          'rgba(255,99,132,1)',
-          'rgba(54, 162, 235, 1)',
-          'rgba(255, 206, 86, 1)',
-          'rgba(75, 192, 192, 1)',
-          'rgba(153, 102, 255, 1)',
-          'rgba(255, 159, 64, 1)'
-        ], //use same color list with 100% opacity
+        backgroundColor: [], //dynamically generated colors based on number of distinct projects (from projects GET data) with palette.js
+        borderColor: [], //use same color list with 100% opacity
+        hoverBackgroundColor: [],
         borderWidth: 1
       }]
     },
