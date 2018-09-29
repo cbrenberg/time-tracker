@@ -47,10 +47,6 @@ md-content.scrollable {
   cursor: pointer;
 }
 
-#testChart {
-  width: 600px;
-  height: 200px;
-}
 
 h4.md-headline.formTitle {
   margin-top: 5px;
@@ -63,4 +59,10 @@ md-input-container#newProjectIn {
 #newProjectCard {
   padding: 10px;
   margin: 0 0 5px 0;
+}
+
+.chartContainer {
+  position: relative;
+  height: 60vh;
+  width: 70vw;
 }

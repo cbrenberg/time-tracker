@@ -93,7 +93,7 @@ app.controller('ReportsController', ['$http', '$mdDialog', '$mdToast', function 
   vm.renderProjectChart = function () {
     //append canvas to DOM when tab is clicked for proper chart rendering
     let el = document.getElementById('projectChartContainer');
-    angular.element(el).empty().append(`<h2>Time Spent By Project</h2><canvas id="projectChart"></canvas>`)
+    angular.element(el).empty().append(`<canvas id="projectChart"></canvas>`)
 
     //clear and reassign chart data object before render
     vm.chartData.data.datasets[0].data = [];
@@ -117,7 +117,7 @@ app.controller('ReportsController', ['$http', '$mdDialog', '$mdToast', function 
 
     //append canvas to DOM when tab is clicked for proper chart rendering
     let el = document.getElementById('taskChartContainer');
-    angular.element(el).empty().append(`<h2>Time Spent By Task</h2><canvas id="taskChart"></canvas>`);
+    angular.element(el).empty().append(`<canvas id="taskChart"></canvas>`);
 
     //clear and reassign chart data object before render
     vm.chartData.data.datasets[0].data = [];
