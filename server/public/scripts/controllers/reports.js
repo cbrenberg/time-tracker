@@ -5,29 +5,32 @@ app.controller('ReportsController', ['$http', '$mdDialog', '$mdToast', function 
 
   vm.getChartData = function () {
     console.log('in getChartData');
-    
+
     //GET request for project id, project names, durations for summary chart
     $http.get('/reports/projects')
-      .then(function(response) {
+      .then(function (response) {
         console.log('back from /reports/projects with', response.data);
         vm.summaryData = response.data;
 
         //generate color palette based on length of returned object
-        var barColors = palette('mpn65', vm.summaryData.length);
+        var barColors = palette('mpn65', vm.summaryData.length).map((color) => {
+          color = '#' + color;
+          return color;
+        });
+        console.log('barColors:', barColors);
+        
 
         //assign new color list to chart
         vm.testChart.data.datasets[0].backgroundColor = barColors.map(function (color) {
-          hexToRgba(color, 0.2);
-          return color;
+          return hexToRgba(color, 0.2);;
         });//end backgroundColors map;
         console.log('backgroundColor:', vm.testChart.data.datasets[0].backgroundColor);
-        
+
 
 
         //assign border colors
         vm.testChart.data.datasets[0].borderColor = barColors.map(function (color) {
-          hexToRgba(color);
-          return color;
+          return hexToRgba(color);
         });//end borderColors map
 
         //assign colors for tooltip colorbox
@@ -35,8 +38,7 @@ app.controller('ReportsController', ['$http', '$mdDialog', '$mdToast', function 
 
         //assign hover colors
         vm.testChart.data.datasets[0].hoverBackgroundColor = barColors.map(function (color) {
-          hexToRgba(color, 0.4);
-          return color;
+          return hexToRgba(color, 0.5);
         });//end borderColors map
 
         vm.summaryData.forEach((project) => {
@@ -46,7 +48,7 @@ app.controller('ReportsController', ['$http', '$mdDialog', '$mdToast', function 
           );
         })
       })
-      .catch(function(error) {
+      .catch(function (error) {
         console.log('Error getting summary data:', error);
       });//end summary GET
 
@@ -68,7 +70,7 @@ app.controller('ReportsController', ['$http', '$mdDialog', '$mdToast', function 
   }//end getChartData
 
 
-//initialize chart.JS display
+  //initialize chart.JS display
   vm.ctx = document.getElementById('testChart');
   vm.testChart = new Chart(vm.ctx, {
     type: 'bar',
