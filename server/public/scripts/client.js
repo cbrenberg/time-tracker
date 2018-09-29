@@ -22,7 +22,8 @@ app.config(['$routeProvider', function ($routeProvider) {
         controller: 'ProjectsController as vm'
       })
     .otherwise(
-      { template: `<h2>404 Not Found</h2>` }
+      { templateUrl: '../views/reports.html',
+        controller: 'ReportsController as vm'
+      }
     );
 }]);
-

@@ -6,6 +6,7 @@ const pg = require('pg');
 //require routers here
 const entries = require('./routes/router.entries');
 const projects = require('./routes/router.projects');
+const reports = require('./routes/router.reports')
 
 
 //globals
@@ -19,6 +20,7 @@ app.use(express.static('server/public'));
 //routes
 app.use('/entries', entries);
 app.use('/projects', projects);
+app.use('/reports', reports);
 
 //spin up server
 app.listen(PORT, () => {

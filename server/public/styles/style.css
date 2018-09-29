@@ -46,3 +46,8 @@ md-content.scrollable {
 .sortable {
   cursor: pointer;
 }
+
+#testChart {
+  width: 600px;
+  height: 200px;
+}

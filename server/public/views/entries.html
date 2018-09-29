@@ -50,11 +50,11 @@
         <span flex="40" class="sortable" ng-click="vm.orderByField='-name'; vm.reverseSort = !vm.reverseSort">
           <h4 class="rowTitle md-title">Task <md-icon>unfold_more</md-icon></h4>
         </span>
-        <span flex="20" class="sortable" ng-click="vm.orderByField='-project'; vm.reverseSort = !vm.reverseSort">
+        <span flex="30" class="sortable" ng-click="vm.orderByField='-project'; vm.reverseSort = !vm.reverseSort">
           <h5 class="rowSubtitle md-title">Project <md-icon>unfold_more</md-icon></h5>
         </span>
-        <span flex="20" class="md-title sortable" ng-click="vm.orderByField='-date'; vm.reverseSort = !vm.reverseSort">Date <md-icon>unfold_more</md-icon></span>
-        <span flex="20" class="md-title sortable" ng-click="vm.orderByField='-duration'; vm.reverseSort = !vm.reverseSort">Time Spent <md-icon>unfold_more</md-icon></span>
+        <span flex="15" class="md-title sortable" ng-click="vm.orderByField='-date'; vm.reverseSort = !vm.reverseSort">Date <md-icon>unfold_more</md-icon></span>
+        <span flex="15" class="md-title sortable" ng-click="vm.orderByField='-duration'; vm.reverseSort = !vm.reverseSort">Time<md-icon>unfold_more</md-icon></span>
       </div>
       <div flex="10" layout="row" layout-align="center center">
         <span class="md-title">Actions</span>
@@ -69,11 +69,11 @@
       <span flex="40">
         <h4 class="rowTitle md-headline">{{entry.name}}</h4>
       </span>
-      <span flex="20">
+      <span flex="30">
         <h5 class="rowSubtitle md-subhead">{{entry.project}}</h5>
       </span>
-      <span flex="20" class="md-body-1">{{entry.date}}</span>
-      <span flex="20" class="md-body-1">{{entry.duration}} hrs</span>
+      <span flex="15" class="md-body-1">{{entry.date}}</span>
+      <span flex="15" class="md-body-1">{{entry.duration}} hrs</span>
     </div>
     <div flex="10" layout="row" layout-align="center center">
       <md-button class="md-secondary md-icon-button" ng-click="">
