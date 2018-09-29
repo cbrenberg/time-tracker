@@ -18,32 +18,32 @@ app.controller('ReportsController', ['$http', '$mdDialog', '$mdToast', function 
           return color;
         });
         console.log('barColors:', barColors);
-        
+
 
         //assign new color list to chart
-        vm.testChart.data.datasets[0].backgroundColor = barColors.map(function (color) {
+        vm.chartData.data.datasets[0].backgroundColor = barColors.map(function (color) {
           return hexToRgba(color, 0.2);;
         });//end backgroundColors map;
-        console.log('backgroundColor:', vm.testChart.data.datasets[0].backgroundColor);
+        console.log('backgroundColor:', vm.chartData.data.datasets[0].backgroundColor);
 
 
 
         //assign border colors
-        vm.testChart.data.datasets[0].borderColor = barColors.map(function (color) {
+        vm.chartData.data.datasets[0].borderColor = barColors.map(function (color) {
           return hexToRgba(color);
         });//end borderColors map
 
         //assign colors for tooltip colorbox
-        vm.testChart.data.datasets[0].pointStrokeColor = vm.testChart.data.datasets[0].borderColor;
+        vm.chartData.data.datasets[0].pointStrokeColor = vm.chartData.data.datasets[0].borderColor;
 
         //assign hover colors
-        vm.testChart.data.datasets[0].hoverBackgroundColor = barColors.map(function (color) {
+        vm.chartData.data.datasets[0].hoverBackgroundColor = barColors.map(function (color) {
           return hexToRgba(color, 0.5);
         });//end borderColors map
 
         vm.summaryData.forEach((project) => {
-          vm.testChart.data.labels.push(project.name);
-          vm.testChart.data.datasets[0].data.push(
+          vm.chartData.data.labels.push(project.name);
+          vm.chartData.data.datasets[0].data.push(
             moment.duration(project.duration).asHours().toFixed(2)
           );
         })
@@ -69,10 +69,18 @@ app.controller('ReportsController', ['$http', '$mdDialog', '$mdToast', function 
       });//end summary GET
   }//end getChartData
 
+  vm.renderProjectChart = function () {
+    //append canvas to DOM
+    let el = document.getElementById('projectChartContainer');
+    console.log(el);
+    angular.element(el).empty().append(`<h2>Time Spent By Project</h2><canvas id="projectChart"></canvas>`)
+    //initialize chart.JS display
+    vm.ctx = document.getElementById('projectChart');
+    vm.projectChart = new Chart(vm.ctx, vm.chartData);
+  };//end renderProjectChart
+  
 
-  //initialize chart.JS display
-  vm.ctx = document.getElementById('testChart');
-  vm.testChart = new Chart(vm.ctx, {
+  vm.chartData = {
     type: 'bar',
     data: {
       labels: [], //populate with project names
@@ -81,7 +89,7 @@ app.controller('ReportsController', ['$http', '$mdDialog', '$mdToast', function 
         data: [], //populate with durations
         backgroundColor: [], //dynamically generated colors based on number of distinct projects (from projects GET data) with palette.js
         borderColor: [], //use same color list with 100% opacity
-        hoverBackgroundColor: [],
+        hoverBackgroundColor: [], //same colors with 50% opacity
         borderWidth: 1
       }]
     },
@@ -99,8 +107,7 @@ app.controller('ReportsController', ['$http', '$mdDialog', '$mdToast', function 
         }]
       }
     }
-  });
-
+  }
   //get chart data on view load
   vm.getChartData();
 }]);
