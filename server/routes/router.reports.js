@@ -23,7 +23,8 @@ router.get('/tasks', (req, res) => {
   console.log('/reports/tasks GEt');
   pool.query(`SELECT "entries"."id", "entries"."name", "entries"."date", ("entries"."end_time" - "entries"."start_time") as "duration" , "projects"."name" as "project"  
               FROM "entries"
-              JOIN "projects" ON "projects"."id" = "entries"."project_id";`)
+              JOIN "projects" ON "projects"."id" = "entries"."project_id"
+              ORDER BY "entries"."date";`)
     .then((results) => {
       console.log('back from /reports/tasks with', results.rows);
       res.send(results.rows);

@@ -17,8 +17,15 @@ app.controller('ReportsController', ['$http', '$mdDialog', '$mdToast', function 
       }]
     },
     options: {
+      legend: {
+        display: false
+      },
       scales: {
         yAxes: [{
+          scaleLabel: {
+            display: true,
+            labelString: 'Hours'
+          },
           ticks: {
             beginAtZero: true
           }
@@ -49,7 +56,7 @@ app.controller('ReportsController', ['$http', '$mdDialog', '$mdToast', function 
         console.log('back from /reports/projects with', response.data);
         vm.projectData = response.data;
         //create color palette from response data
-        vm.createColorPalette();
+        vm.createColorPalette(vm.projectData);
         vm.renderProjectChart();
       })//end THEN
       .catch(function (error) {
@@ -58,9 +65,9 @@ app.controller('ReportsController', ['$http', '$mdDialog', '$mdToast', function 
 
   }//end getAllChartData
 
-  vm.createColorPalette = function () {
+  vm.createColorPalette = function (array) {
     //generate color palette based on length of returned object
-    vm.barColors = palette('mpn65', vm.projectData.length).map((color) => {
+    vm.barColors = palette('mpn65', array.length).map((color) => {
       color = '#' + color;
       return color;
     });
@@ -105,6 +112,9 @@ app.controller('ReportsController', ['$http', '$mdDialog', '$mdToast', function 
   };//end renderProjectChart
 
   vm.renderTaskChart = function () {
+    //generate new color palette
+    vm.createColorPalette(vm.taskData);
+
     //append canvas to DOM when tab is clicked for proper chart rendering
     let el = document.getElementById('taskChartContainer');
     angular.element(el).empty().append(`<h2>Time Spent By Task</h2><canvas id="taskChart"></canvas>`);
