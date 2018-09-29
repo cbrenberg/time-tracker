@@ -1,19 +1,17 @@
-<md-content layout="column" layout-align="stretch center">
-  <md-toolbar class="md-hue-4">
-    <div class="md-toolbar-tools">
-      <h2 flex>Add a Project</h2>
-    </div>
-  </md-toolbar>
-  <form class="projectForm" layout="row">
-    <md-input-container flex>
+<md-card layout="row" layout-align="start start" id="newProjectCard">
+  <div flex="20">
+    <h4 class="md-headline formTitle">Add a Project: </h4>
+  </div>
+  <form class="projectForm" flex="80" layout="row" layout-align="start end">
+    <md-input-container id="newProjectIn" flex="80">
       <label>Project Name</label>
       <input required ng-model="vm.projectToAdd.name">
     </md-input-container>
-    <md-input-container flex class="md-no-underline">
+    <md-input-container class="md-no-underline" flex="20">
       <md-button type="submit" value="Submit" ng-click="vm.addProject()">Submit</md-button>
     </md-input-container>
   </form>
-</md-content>
+</md-card>
 
 <!-- uncomment to see view model data -->
 <!-- <pre>{{vm | json}}</pre> -->

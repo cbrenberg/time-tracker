@@ -4,7 +4,7 @@ app.controller('EntriesController', ['$http', '$mdDialog', '$mdToast', function 
   vm.entryToAdd = {};
   vm.entries = [];
   vm.projects = [];
-  vm.orderByField = '';
+  vm.orderByField = '-date';
   vm.reverseSort = false;
 
   vm.addEntry = function () {

@@ -51,3 +51,16 @@ md-content.scrollable {
   width: 600px;
   height: 200px;
 }
+
+h4.md-headline.formTitle {
+  margin-top: 5px;
+}
+
+md-input-container#newProjectIn {
+  margin-bottom: 5px;
+}
+
+#newProjectCard {
+  padding: 10px;
+  margin: 0 0 5px 0;
+}

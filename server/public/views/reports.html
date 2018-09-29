@@ -1,17 +1,12 @@
 <div ng-cloak>
   <md-content>
     <md-tabs md-dynamic-height md-border-bottom>
-      <md-tab label="Reports Home">
-        <md-content class="md-padding">
-          <h2>Select a Report Above</h2>
-        </md-content>
-      </md-tab>
-      <md-tab label="By Project" ng-click="vm.getProjectChartData()">
+      <md-tab label="By Project" ng-click="vm.renderProjectChart()">
         <md-content class="md-padding" >
           <div id="projectChartContainer"></div>
         </md-content>
       </md-tab>
-      <md-tab label="By Task" ng-click="vm.getTaskChartData()">
+      <md-tab label="By Task" ng-click="vm.renderTaskChart()">
         <md-content class="md-padding">
           <div id="taskChartContainer"></div>
         </md-content>
