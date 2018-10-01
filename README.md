@@ -1,5 +1,7 @@
 # Time Tracker
 
+This app is meant for users to manage ongoing projects and time spent on tasks associated with each project. Users can add or delete projects and tasks along with the specific date and times spent on a specific task. The reports view allows users to visualize the number of hours spent on individual projects or tasks.
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
