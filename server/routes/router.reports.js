@@ -27,6 +27,7 @@ router.get('/tasks', (req, res) => {
               ORDER BY "entries"."date";`)
     .then((results) => {
       console.log('back from /reports/tasks with', results.rows);
+      // results.rows.reduce(groupBy())
       res.send(results.rows);
     })
     .catch((error) => {
@@ -34,8 +35,6 @@ router.get('/tasks', (req, res) => {
       res.sendStatus(500);
     })
 })
-
-
 
 
 module.exports = router;

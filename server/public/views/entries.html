@@ -1,10 +1,9 @@
-<md-content layout="column" layout-align="stretch center" class="timeEntryFormDiv">
-  <md-toolbar class="md-hue-4">
-    <div class="md-toolbar-tools">
-      <h2 flex>Add a task</h2>
-    </div>
-  </md-toolbar>
-  <form class="entryForm" layout="row" layout-xs="column">
+<div>
+  <h4 class="md-headline formTitle">Add a task</h4>
+</div>
+
+<md-card layout="column" layout-align="stretch center" class="inputCard">
+  <form class="entryForm" layout="row" layout-xs="column" layout-align="start top">
     <md-input-container flex>
       <label>Task Description</label>
       <input required type="text" ng-model="vm.entryToAdd.name">
@@ -17,7 +16,8 @@
         <md-option ng-repeat="project in vm.projects" value="{{project.id}}">{{project.name}}</md-option>
       </md-select>
     </md-input-container>
-
+    <!-- </div>
+    <div layout="row"> -->
     <md-input-container flex style="min-width:200px;">
       <md-datepicker required ng-model="vm.entryToAdd.date" md-placeholder="Enter date"></md-datepicker>
     </md-input-container>
@@ -35,10 +35,8 @@
     <md-input-container flex class="">
       <md-button type="submit" ng-click="vm.addEntry()">Submit</md-button>
     </md-input-container>
-    <!-- ng-options="project.id as project.name for project in vm.projects" -->
-    <!-- <input required type="date" placeholder="When?" ng-model="vm.entryToAdd.date"> -->
   </form>
-</md-content>
+</md-card>
 
 
 <!-- CUSTOM TABLE DISPLAY -->
@@ -48,12 +46,15 @@
     <div class="md-toolbar-tools">
       <div flex="90" layout="row" layout-align="space-between center">
         <span flex="40" class="sortable" ng-click="vm.orderByField='-name'; vm.reverseSort = !vm.reverseSort">
-          <h4 class="rowTitle md-title">Task <md-icon>unfold_more</md-icon></h4>
+          <h4 class="rowTitle md-title">Task <md-icon>unfold_more</md-icon>
+          </h4>
         </span>
         <span flex="30" class="sortable" ng-click="vm.orderByField='-project'; vm.reverseSort = !vm.reverseSort">
-          <h5 class="rowSubtitle md-title">Project <md-icon>unfold_more</md-icon></h5>
+          <h5 class="rowSubtitle md-title">Project <md-icon>unfold_more</md-icon>
+          </h5>
         </span>
-        <span flex="15" class="md-title sortable" ng-click="vm.orderByField='-date'; vm.reverseSort = !vm.reverseSort">Date <md-icon>unfold_more</md-icon></span>
+        <span flex="15" class="md-title sortable" ng-click="vm.orderByField='-date'; vm.reverseSort = !vm.reverseSort">Date
+          <md-icon>unfold_more</md-icon></span>
         <span flex="15" class="md-title sortable" ng-click="vm.orderByField='-duration'; vm.reverseSort = !vm.reverseSort">Time<md-icon>unfold_more</md-icon></span>
       </div>
       <div flex="10" layout="row" layout-align="center center">

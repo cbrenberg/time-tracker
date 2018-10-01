@@ -79,12 +79,12 @@ app.controller('ReportsController', ['$http', '$mdDialog', '$mdToast', function 
     });//end backgroundColors map;
     console.log('backgroundColor:', vm.chartData.data.datasets[0].backgroundColor);
 
-    //assign border colors
+    //assign chart border colors
     vm.chartData.data.datasets[0].borderColor = vm.barColors.map(function (color) {
       return hexToRgba(color);
     });//end borderColors map
 
-    //assign hover colors
+    //assign chart hover colors
     vm.chartData.data.datasets[0].hoverBackgroundColor = vm.barColors.map(function (color) {
       return hexToRgba(color, 0.5);
     });//end borderColors map
@@ -95,16 +95,17 @@ app.controller('ReportsController', ['$http', '$mdDialog', '$mdToast', function 
     let el = document.getElementById('projectChartContainer');
     angular.element(el).empty().append(`<canvas id="projectChart"></canvas>`)
 
-    //clear and reassign chart data object before render
+    //clear and reassign chart data object
     vm.chartData.data.datasets[0].data = [];
     vm.chartData.data.labels = [];
+    
 
     vm.projectData.forEach((project) => {
       vm.chartData.data.labels.push(project.name);
       vm.chartData.data.datasets[0].data.push(
         moment.duration(project.duration).asHours().toFixed(2)
       );
-    })//end summarData.forEach
+    })//end projectData.forEach
 
     //initialize chart.JS display
     vm.ctx = document.getElementById('projectChart');
@@ -128,7 +129,7 @@ app.controller('ReportsController', ['$http', '$mdDialog', '$mdToast', function 
       vm.chartData.data.datasets[0].data.push(
         moment.duration(task.duration).asHours().toFixed(2)
       );
-    })//end summarData.forEach
+    })//end taskData.forEach
 
     // --------------------------------------
     //add date axis manipulation here

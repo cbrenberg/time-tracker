@@ -52,16 +52,11 @@ md-content.scrollable {
   cursor: pointer;
 }
 
-
-h4.md-headline.formTitle {
-  margin-top: 5px;
-}
-
 md-input-container#newProjectIn {
   margin-bottom: 5px;
 }
 
-#newProjectCard {
+.inputCard {
   padding: 10px;
   margin: 0 0 5px 0;
 }
@@ -70,4 +65,9 @@ md-input-container#newProjectIn {
   position: relative;
   height: 60vh;
   width: 70vw;
+}
+
+.formTitle {
+  margin-top: 0;
+  margin-bottom: 0;
 }
