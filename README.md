@@ -42,9 +42,9 @@ INSERT INTO "entries" ("name", "project_id", "date", "start_time", "end_time")
 
 ## Built With
 
-* [MomentJS]
-* [ChartJS](https://maven.apache.org/) - Dependency Management
-* [PaletteJS](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+* [MomentJS](https://momentjs.com/) - Used for time formatting
+* [ChartJS](https://maven.apache.org/) - Used to generate bar charts
+* [PaletteJS](https://rometools.github.io/rome/) - Used to dynamically generate color palettes
 * [AngularJS](https://angularjs.org/) - Front-end Framework
 * [angular-route](https://www.npmjs.com/package/angular-route) - Used for client-side routing
 * [AngularJS Material](https://material.angularjs.org/) - Used for styling
