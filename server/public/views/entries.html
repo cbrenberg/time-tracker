@@ -64,7 +64,7 @@
   </md-toolbar>
 </md-content>
 
-<md-content class="scrollable">
+<md-content class="scrollable" id="taskTable">
   <div class="tableRow" layout="row" ng-repeat="entry in vm.entries | orderBy:vm.orderByField:vm.reverseSort">
     <div flex="90" layout="row" layout-align="space-between center">
       <span flex="40">
@@ -77,9 +77,10 @@
       <span flex="15" class="md-body-1">{{entry.duration}} hrs</span>
     </div>
     <div flex="10" layout="row" layout-align="center center">
-      <md-button class="md-secondary md-icon-button" ng-click="">
+<!-- UNCOMMENT AFTER ADDING EDIT ROUTES -->
+      <!-- <md-button class="md-secondary md-icon-button" ng-click="">
         <md-icon>edit_outline</md-icon>
-      </md-button>
+      </md-button> -->
       <md-button class="md-secondary md-icon-button" ng-click="vm.deleteEntry(entry)">
         <md-icon>delete_outline</md-icon>
       </md-button>

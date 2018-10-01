@@ -58,6 +58,11 @@ app.controller('ProjectsController', ['$http', '$mdDialog', '$mdToast', function
       .ok('Yes, I\'m sure')
       .cancel('Cancel');
 
+    let alert = $mdDialog.alert()
+      .title("Error")
+      .textContent('Sorry, projects with associated tasks cannot be deleted')
+      .ok('Got it')
+
     $mdDialog.show(confirm)
       .then(function() {
         $http.delete('/projects',
@@ -73,6 +78,7 @@ app.controller('ProjectsController', ['$http', '$mdDialog', '$mdToast', function
           })
           .catch(function (error) {
             console.log('Error deleting item:', error);
+            $mdDialog.show(alert);
           })//end $http
       })//end $mdDialog
   }//end deleteProject
